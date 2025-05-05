@@ -1,0 +1,19 @@
+Package: EPAAVCshiny
+Title: Tableau de bord de l'EPA AVC
+Version: 0.0.0.9000
+Authors@R: 
+    person("Clément", "Claustre", , "clement.claustre@urgences-ara.fr", role = c("aut", "cre"))
+Description: Tableau de bord dynamique de l'EPA AVC.
+License: MIT + file LICENSE
+Imports: 
+    config,
+    golem,
+    shiny
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
+Suggests: 
+    spelling,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Language: en-US
