@@ -1,0 +1,17 @@
+Objectif : L'objectif est de permettre librement l'exploration des données en croisant à volonté les données et en sélectionnant la population. Pas de faire un rapport
+ => Possibilité d'avoir aussi quelques graphs présélectionnés (ex : délais) pour lesquels seul la pop est modifiable
+
+
+Pages :
+ - Une page d'authentification qui permet d'identifier les données de quel centre afficher
+ - Un accueil avec guide d'utilisation
+ - Une page structure
+  * Reprend les questions du questionnaire structure dans une carte sur laquelle on peut sélectionner les ressources/combinaisons de ressources (constructeur de requete ?)
+  * Permet de sélectionner l'année (une seule à la fois)
+ - Une page patient
+  * Reprend les questions du questionnaire patient.
+    + Des graphs fixes prédéterminés (délais ? Parcours patient en alluvial ?)
+    + Un graph libre où on choisit quoi mettre ? => Doit etre full auto y compris sur les variables à inclure puisque ca change d'une année à l'autre
+  * Permet de sélectionner la population sur : Période, Exclure les AVC non isch, sexe, age, Mode d'arrivée, Régulation, NIHSS, Imagerie (IRM/TDM), Strat reperf
+  - Panorama des UNV
+
