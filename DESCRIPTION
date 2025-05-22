@@ -9,11 +9,19 @@ URL: https://github.com/CC-URGARA/EPAAVCshiny
 BugReports: https://github.com/CC-URGARA/EPAAVCshiny/issues
 Imports: 
     config,
+    dplyr,
+    ggplot2,
+    ggpubr,
     golem,
+    labelled,
+    lubridate,
+    magrittr,
+    rlang,
     RSQLite,
     shiny,
     shinyauthr,
-    shinydashboard
+    shinydashboard,
+    stats
 Suggests: 
     spelling,
     testthat (>= 3.0.0)

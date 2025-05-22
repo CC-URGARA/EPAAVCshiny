@@ -11,7 +11,7 @@ Pages :
  - Une page patient
   * Reprend les questions du questionnaire patient.
     + Des graphs fixes prédéterminés (délais ? Parcours patient en alluvial ?)
-    + Un graph libre où on choisit quoi mettre ? => Doit etre full auto y compris sur les variables à inclure puisque ca change d'une année à l'autre
+    + Un graph libre où on choisit quoi mettre ? => Doit etre full auto y compris sur les variables à inclure puisque ca change d'une année à l'autre => Tableau avec les chiffres en dessous (val entre 1 et 5 changé en 1 à 5)
   * Permet de sélectionner la population sur : Période, Exclure les AVC non isch, sexe, age, Mode d'arrivée, Régulation, NIHSS, Imagerie (IRM/TDM), Strat reperf
   - Panorama des UNV
 
