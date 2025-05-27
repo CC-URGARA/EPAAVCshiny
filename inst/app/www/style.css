@@ -1,0 +1,165 @@
+
+/*définition des couleurs*/
+:root {
+ --blue-main: #145587;
+ --blue-main_active: #1A6FB3;
+ --blue-main_hover: #0F3E63;
+ --grey-main: #666666;
+ --grey-main_active: #a6a6a6;
+ --grey-main_hover: #919191;
+ --lightblue-main: #8ed1fc;
+ --lightgrey-main: #cecece;
+ --lightgrey-main_active: #939393;
+ --lightgrey-main_hover: #a8a8a8;
+}
+
+/*background of the app */
+.skin-blue .wrapper {
+  background-color: #ecf0f5;
+}
+
+/* logo */
+.skin-blue .main-header .logo {
+                      background-color: var(--blue-main_active);
+                      }
+
+/* logo when hovered */
+.skin-blue .main-header .logo:hover {
+                      background-color: var(--blue-main_active);
+                      }
+
+/* navbar (rest of the header) */
+.skin-blue .main-header .navbar {
+                      background-color: var(--blue-main);
+                      }
+
+/* toggle button when hovered  */
+.skin-blue .main-header .navbar .sidebar-toggle:hover{
+                    background-color: var(--blue-main_hover);
+                    }
+
+/* icon button when hovered  */
+.skin-blue .main-header .navbar .dropdown:hover{
+                    background-color: var(--blue-main_hover);
+                    }
+
+/*Cas particulier du fond de bouton logout qu'on ne veut pas en surbrillance quand on passe dessus*/
+#dropdown_logout:hover {
+ background-color: var(--blue-main); /* couleur de fond au survol */
+}
+
+
+
+/*Style des text-box*/
+.text-box {
+   border: 1px solid black;
+   margin: 10px;
+   padding-left: 5px;
+   padding-right: 5px;
+   border-radius: 10px;
+}
+
+.text-box h2 {
+   margin-top: 0px;
+   border-bottom: solid;
+}
+
+
+.header {
+  padding: 0px;
+  text-align: center;
+  background: var(--blue-main);
+  color: white;
+  font-size: 30px;
+}
+
+/*header des box*/
+.box {
+  border-radius: 10px;
+  border-top: 0px solid #d2d6de;
+}
+.box-header{
+  color: white;
+  display: block;
+  padding: 10px;
+  position: relative;
+  background: var(--lightblue-main);
+  border-radius: 10px;
+}
+
+/*le bouton +/- utilisé pour réduire les box*/
+.btn.btn-box-tool {
+  color: black;
+}
+
+
+/* boutons */
+.btn-default {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  margin-bottom:5px;
+
+  color: #fff;
+  background: linear-gradient(180deg, #4B91F7 0%, #367AF6 100%);
+   background-origin: border-box;
+  box-shadow: 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.btn-default:focus {
+  box-shadow: inset 0px 0.8px 0px -0.25px rgba(255, 255, 255, 0.2), 0px 0.5px 1.5px rgba(54, 122, 246, 0.25), 0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+}
+
+
+/*navbar pills*/
+
+li[role="presentation"] {
+  display: inline-block;
+  color: black;
+  background-color: #e5e5e5;
+  text-align: center;
+  padding: 0;
+  text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 17px;
+}
+
+
+/*pickerinput*/
+.btn.dropdown-toggle.btn-default {
+  background: var(--lightgrey-main);
+  color:black;
+}
+
+.btn.dropdown-toggle.btn-default:hover {
+  background: var(--lightgrey-main_hover);
+  color:white;
+}
+
+.btn.dropdown-toggle.btn-default:active {
+  background: var(--lightgrey-main_active);
+  color:white;
+}
+
+.dropdown.bootstrap-select{
+  background: inherit;/*évite un blanc sous le bouton*/
+}
+
+
+/*S'assure que virtualSelectInput passe devant le sliderinput*/
+.vscomp-dropbox-container.pop-comp-wrapper.position-bottom {
+  z-index: 100 !important;
+  position: absolute !important;
+}
+
+
+

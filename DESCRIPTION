@@ -7,6 +7,8 @@ Description: Tableau de bord dynamique de l'EPA AVC.
 License: MIT + file LICENSE
 URL: https://github.com/CC-URGARA/EPAAVCshiny
 BugReports: https://github.com/CC-URGARA/EPAAVCshiny/issues
+Depends: 
+    R (>= 3.5)
 Imports: 
     config,
     dplyr,
@@ -16,11 +18,15 @@ Imports:
     labelled,
     lubridate,
     magrittr,
+    purrr,
     rlang,
     RSQLite,
+    scales,
     shiny,
     shinyauthr,
     shinydashboard,
+    shinyjqui,
+    shinyWidgets,
     stats
 Suggests: 
     spelling,

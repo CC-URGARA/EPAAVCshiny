@@ -51,6 +51,7 @@ mod_login_page_server <- function(id, r_global){
       r_global$user_info = r_local$credentials()$info
 
       #Initialisation des sources de données
+      r_global$data = tab_EPA_AVC
 
       #Apparition/disparition de l'UI
       golem::invoke_js("show", "#hidden_menu")

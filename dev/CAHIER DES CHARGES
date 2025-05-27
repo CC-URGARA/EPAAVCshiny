@@ -15,3 +15,29 @@ Pages :
   * Permet de sélectionner la population sur : Période, Exclure les AVC non isch, sexe, age, Mode d'arrivée, Régulation, NIHSS, Imagerie (IRM/TDM), Strat reperf
   - Panorama des UNV
 
+En cas d'erreur sur le plot/tableau croisé => Message disant "oups un problème s'est produit sur la création de votre graphique. Merci de réessayer ou de changer les paramètres"
+
+
+Idées :
+ => Sélectionner les variables avec un label pour le graph/table croisé dynamique
+
+
+Remarques :
+ - Par défaut la pop totale est sélectionnée mais quand on sélectionne une pop comment gérer les données manquantes. Ex : 0-120 ans = tout age mais si je veux ceux de > 60 je ne veux pas les NA
+
+Autoriser le choix de la taille des labels ?
+
+to do :
+ - Age range => Automatique sur les données
+ - r_global => Les moduls select pop communiquent entre eux
+ - Bouton données manquantes
+
+
+
+
+crossplot tests reco :
+Cas avec uniquement x_var
+Cas avec x_var et y_var continues
+Cas avec x_var discrète et y_var continue
+Cas avec facettes et groupement
+Cas avec variables continues à discrétiser

@@ -403,3 +403,26 @@ make_action_button <- function(tag, inputId = NULL) {
 #
 #   return(HTML(html))
 # }
+
+
+
+#' pickerInputOptions
+#'
+#' @description Apply options for pickerInput
+#'
+#' @return options for a pickerinput
+#'
+#' @importFrom shinyWidgets pickerOptions
+#' @noRd
+pickerInputOptions_custom <- function(){
+  pickerOptions(
+    `selected-text-format` = "count > 2",
+    `actions-box` = TRUE,
+    noneSelectedText = "Vide",
+    selectAllText = "Tout s\u00e9lectionner",
+    countSelectedText = "{0} \u00e9lements s\u00e9lectionn\u00e9s",
+    deselectAllText = "Tout d\u00e9selectionner",
+    liveSearch = TRUE,
+    size = 10
+  )
+}

@@ -11,8 +11,10 @@ fct_cossDynamicPlot(
   group_var = NULL,
   facet_x = NULL,
   facet_y = NULL,
-  xlim = c(NA, NA),
-  ylim = c(NA, NA)
+  includ_x0 = TRUE,
+  includ_y0 = TRUE,
+  n_categ = 6,
+  show_NA = FALSE
 )
 }
 \arguments{
@@ -28,9 +30,13 @@ fct_cossDynamicPlot(
 
 \item{facet_y}{char : Variable en facet y}
 
-\item{xlim}{vec c(min, max) : limites du graphique sur l'axe x}
+\item{includ_x0}{booléen : Le 0 doit-il apparaitre sur le graphique sur l'axe x}
 
-\item{ylim}{vec c(min, max) : limites du graphique sur l'axe y}
+\item{includ_y0}{booléen : Le 0 doit-il apparaitre sur le graphique sur l'axe y}
+
+\item{n_categ}{int : Nombre de catégorie pour discrétiser group_var, facet_x et facet_y si elles sont continues}
+
+\item{show_NA}{Booléen : Afficher ou non les données manquantes sur le graphique}
 }
 \value{
 ggplot
@@ -69,6 +75,8 @@ fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb", group_var = "vs")
 fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_x = "vs")
 fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_y = "vs")
 fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_x = "am", facet_y = "vs")
+fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb",
+                    facet_x = "am", facet_y = "wt", n_categ = 3)
 
 
 }

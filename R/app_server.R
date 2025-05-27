@@ -41,8 +41,10 @@ app_server <- function(input, output, session) {
   #Appel serveurs
   mod_login_page_server("login_page", r_global = r_global)
   mod_accueil_server("accueil", r_global = r_global)
-  mod_accueil_server("structures", r_global = r_global)
-  mod_accueil_server("patients", r_global = r_global)
+  mod_structures_server("structures", r_global = r_global)
+  mod_pat_delais_server("pat_delais", r_global = r_global)
+  mod_pat_parcours_server("pat_parcours", r_global = r_global)
+  mod_pat_graph_cust_server("pat_graph_cust", r_global = r_global)
 
   #A la fermeture de la session
   onSessionEnded(function() {

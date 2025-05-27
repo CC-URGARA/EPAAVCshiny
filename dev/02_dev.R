@@ -24,6 +24,11 @@ golem::add_module(name = "accueil", with_test = TRUE) # Name of the module
 golem::add_module(name = "login_page", with_test = TRUE) # Name of the module
 golem::add_module(name = "structures", with_test = TRUE) # Name of the module
 golem::add_module(name = "patients", with_test = TRUE) # Name of the module
+golem::add_module(name = "selectPop", with_test = TRUE) # Name of the module
+golem::add_module(name = "pat_delais", with_test = TRUE) # Name of the module
+golem::add_module(name = "pat_parcours", with_test = TRUE) # Name of the module
+golem::add_module(name = "pat_graph_cust", with_test = TRUE) # Name of the module
+
 
 ## Add helper functions ----
 ## Creates fct_* and utils_*
@@ -35,13 +40,13 @@ golem::add_utils("utils", with_test = TRUE)
 ## Creates .js and .css files at inst/app/www
 golem::add_js_file("script")
 golem::add_js_handler("handlers")
-golem::add_css_file("custom")
+golem::add_css_file("style")
 golem::add_sass_file("custom")
 golem::add_any_file("file.json")
 
 ## Add internal datasets ----
 ## If you have data in your package
-usethis::use_data_raw(name = "my_dataset", open = FALSE)
+usethis::use_data_raw(name = "tab_EPA_AVC", open = TRUE)
 
 ## Tests ----
 ## Add one line by test you want to create
