@@ -1,52 +1,26 @@
 # Thu Jul  4 14:42:04 2024 ------------------------------
-# Ce script vise à créer la base de données des mdp et des logs
-# Ne pas relancer ce script à part pour réinitialiser logs et mdp
+#DO NOT RUN
 stop("DO NOT RUN")
-library(DBI)
+#Initialisation de la base sqlite utilisée par shinymanager
+library(shinymanager)
 library(RSQLite)
-library(tidyverse)
+library(DBI)
 
-#Ouverture/création de la base
-mydb <- dbConnect(RSQLite::SQLite(), "inst/DB/DB_outilFragilite.sqlite")
-dbReadTable(mydb, "logs")
+mydb <- dbConnect(RSQLite::SQLite(), "inst/DB/credentials.sqlite")
 
-#Création de la table des mdp
-dbSendStatement(mydb,
-                'CREATE TABLE utilisateurs
-                (
-                  utilisateur VARCHAR(50) PRIMARY KEY NOT NULL,
-                  mdp VARCHAR(50) NOT NULL,
-                  entite VARCHAR(255),
-                  type_utilisateur VARCHAR(255)
-                )')
+# Création des identifiants
+credentials <- data.frame(
+  user = c("admin", "user"),
+  password = c("admin", "user"), # mots de passe en clair
+  admin = c(TRUE, FALSE),              # rôle admin ou non
+  stringsAsFactors = FALSE,
+  profil = c("urgara", "urgara")
+)
 
-dbListTables(mydb)
-dbReadTable(mydb, "utilisateurs")
-
-dbAppendTable(mydb, "utilisateurs",
-              tibble(
-                "utilisateur" = c("user1", "user2"),
-                "mdp" = c(sodium::password_store("pass1"),
-                          sodium::password_store("pass2")),
-                "entite" = c("test1", "test2"),
-                "type_utilisateur" = c("admin", "user"),
-              ))
-dbReadTable(mydb, "utilisateurs")
-
-#Création de la table des logs
-dbSendStatement(mydb,
-                'CREATE TABLE logs
-                (
-                  utilisateur VARCHAR(50) NOT NULL,
-                  action VARCHAR(50) NOT NULL,
-                  dttm DATETIME NOT NULL
-                )')
-
-dbListTables(mydb)
-dbReadTable(mydb, "logs")
-
-
-#deco
-
-dbDisconnect(mydb)
+# Création de la base SQLite avec hashage des mots de passe
+create_db(
+  credentials_data = credentials,
+  sqlite_path = "inst/DB/credentials.sqlite", # chemin vers la base
+  # passphrase = "cf authentificator C Claustre"  # clé de chiffrement
+)
 

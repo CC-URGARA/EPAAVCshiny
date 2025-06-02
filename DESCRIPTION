@@ -15,6 +15,7 @@ Imports:
     ggplot2,
     ggpubr,
     golem,
+    keyring,
     labelled,
     lubridate,
     magrittr,
@@ -22,10 +23,12 @@ Imports:
     rlang,
     RSQLite,
     scales,
+    shinipsum,
     shiny,
     shinyauthr,
     shinydashboard,
     shinyjqui,
+    shinymanager,
     shinyWidgets,
     stats
 Suggests: 

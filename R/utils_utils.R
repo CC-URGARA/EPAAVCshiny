@@ -61,9 +61,13 @@ utils_get_scale_type <- function(var, axis){
   scale = case_when(
     is.numeric(var) ~ paste0("scale_", axis, "_continuous"),
     is.factor(var) ~ paste0("scale_", axis, "_discrete"),
+    is.character(var) ~ paste0("scale_", axis, "_discrete"),
     is.POSIXct(var) ~ paste0("scale_", axis, "_datetime"),
     is.Date(var) ~ paste0("scale_", axis, "_date")
   )
   return(scale)
 }
+
+
+
 

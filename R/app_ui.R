@@ -12,12 +12,12 @@ app_ui <- function(request) {
     # Your application UI logic
     dashboardPage(
       header = dashboardHeader(
-        title = "EPA\'AVC", disable = F,
+        title = "EPA'AVC", disable = FALSE,
         tags$li(class = "dropdown", tags$a(href="mailto:supportsi@urgences-ara.fr",
                                            icon("envelope"), target="_blank")),
-        tags$li(class = "dropdown", style = "padding: 6px;",
-                actionButton(inputId = "logout_bttn", label = "D\u00e9connexion", style = "display: none;"),
-                id = "dropdown_logout"),
+        # tags$li(class = "dropdown", style = "padding: 6px;",
+        #         actionButton(inputId = "logout_bttn", label = "D\u00e9connexion", style = "display: none;"),
+        #         id = "dropdown_logout"),
         tags$li(class = "dropdown", tags$img(src="www/img/Logo_UrgAra_Long.png",
                                              height='50',width='175')),
         tags$li(class = "dropdown", tags$img(src="www/img/logo_EPA_AVC.png",
@@ -25,20 +25,20 @@ app_ui <- function(request) {
       ),
       sidebar = dashboardSidebar(
         sidebarMenu(
-          menuItem("Login", icon = NULL, tabName  = "login_page") |>
-            tagAppendAttributes(id = "login_tab"),#Id utilisée pour faire disparaître le menu après login
+          # menuItem("Login", icon = NULL, tabName  = "login_page") |>
+          #   tagAppendAttributes(id = "login_tab"),#Id utilisée pour faire disparaître le menu après login
           menuItem("Accueil", icon = NULL, tabName  = "accueil"),
           menuItem("Structures", icon = NULL, tabName  = "structures"),
           menuItem("Patients", icon = NULL, tabName  = "patients",
-            menuSubItem("D\u00e9lais", icon = NULL, tabName = "pat_delais"),
-            menuSubItem("Parcours", icon = NULL, tabName = "pat_parcours"),
-            menuSubItem("Graphique personnalis\u00e9", icon = NULL, tabName = "pat_graph_cust")
-            )
-        ) |> tagAppendAttributes(hidden = "true", id = "hidden_menu")),
+                   menuSubItem("D\u00e9lais", icon = NULL, tabName = "pat_delais"),
+                   menuSubItem("Parcours", icon = NULL, tabName = "pat_parcours"),
+                   menuSubItem("Graphique personnalis\u00e9", icon = NULL, tabName = "pat_graph_cust")
+          )
+        )),# |> tagAppendAttributes(hidden = "true", id = "hidden_menu")),
       body = dashboardBody(
         tabItems(
-          tabItem(tabName = "login_page",
-                  mod_login_page_ui("login_page")),
+          #   tabItem(tabName = "login_page",
+          #           mod_login_page_ui("login_page")),
           tabItem(tabName = "accueil",
                   mod_accueil_ui("accueil")),
           tabItem(tabName = "structures",

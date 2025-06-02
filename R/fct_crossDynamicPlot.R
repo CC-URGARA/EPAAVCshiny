@@ -21,7 +21,7 @@
 #' @importFrom ggpubr theme_pubclean
 #' @importFrom labelled var_label "var_label<-"
 #' @importFrom scales pretty_breaks
-#' @importFrom dplyr between mutate across any_of filter
+#' @importFrom dplyr between mutate across any_of filter if_all
 #'
 #'
 #' @returns ggplot
@@ -112,7 +112,7 @@ fct_cossDynamicPlot <- function(tab, x_var, y_var = NULL, group_var = NULL,
   #Exclusion ou non des NA
   if (!show_NA) {
     tab <- tab %>% filter(if_all(any_of(c(x_var, y_var, group_var, facet_x, facet_y)), ~ !is.na(.)))
-    if(nrow(tab) == 0) stop("Le tableau sélectionné ne contient aucunes valeurs")
+    if(nrow(tab) == 0) stop("Le tableau s\u00e9lectionn\u00e9 ne contient aucunes valeurs")
   }
 
   #Initialisation du plot

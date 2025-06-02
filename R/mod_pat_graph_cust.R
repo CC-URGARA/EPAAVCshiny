@@ -52,12 +52,13 @@ mod_pat_graph_cust_ui <- function(id) {
             ),
             actionButton(ns("bttn_generate"), label = "G\u00e9n\u00e9rer le graphique"),
         ),
-
-
-          box(id = ns("boxCrossPlotOutput"), title = "Graphique",
-              width = 12, collapsible = FALSE,
-              jqui_resizable(plotOutput(ns("crossPlot")))
-        )
+        box(id = ns("boxCrossPlotOutput"), title = "Graphique",
+            width = 12, collapsible = TRUE,
+            jqui_resizable(plotOutput(ns("crossPlot")))
+        ),
+        box(id = ns("boxCrossTableOutput"), title = "Tableau",
+            width = 12, collapsible = TRUE,
+            tableOutput(ns("crossTable")))
     )
   )
 }
@@ -123,11 +124,23 @@ mod_pat_graph_cust_server <- function(id, r_global){
 
     #Outputs
     output$crossPlot <- renderPlot(expr = {
-      req(r_local$data, r_local$x_var)
+      validate(
+        need(r_local$x_var, message = 'Choisissez vos param\u00e8tres puis cliquez sur \"g\u00e9n\u00e9rer le graphique\"')
+      )
       fct_cossDynamicPlot(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
                           group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
                           includ_x0 = r_local$includ_x0, includ_y0 = r_local$includ_y0, n_categ = r_local$n_categ)
     })
+
+    output$crossTable <- renderTable(expr = {
+      req(r_local$x_var)
+      shinipsum::random_table(nrow = 5, ncol = 5)
+      # fct_cossDynamicTable(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
+      #                     group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
+      #                     includ_x0 = r_local$includ_x0, includ_y0 = r_local$includ_y0, n_categ = r_local$n_categ)
+    })
+
+
   })
 }
 

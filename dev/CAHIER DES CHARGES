@@ -31,8 +31,7 @@ to do :
  - Age range => Automatique sur les données
  - r_global => Les moduls select pop communiquent entre eux
  - Bouton données manquantes
-
-
+ - plot_add_logo
 
 
 crossplot tests reco :
@@ -41,3 +40,6 @@ Cas avec x_var et y_var continues
 Cas avec x_var discrète et y_var continue
 Cas avec facettes et groupement
 Cas avec variables continues à discrétiser
+
+
+Implémenter shinymanager
