@@ -34,6 +34,7 @@ golem::add_module(name = "pat_graph_cust", with_test = TRUE) # Name of the modul
 ## Creates fct_* and utils_*
 golem::add_fct("crossDynamicPlot", with_test = TRUE)
 golem::add_fct("crossDynamicTable", with_test = TRUE)
+golem::add_fct("fct_AlluvialParcours", with_test = TRUE)
 golem::add_utils("utils", with_test = TRUE)
 
 ## External resources

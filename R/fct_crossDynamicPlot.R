@@ -1,4 +1,4 @@
-#' CrossDynamicPlot
+#' fct_CrossDynamicPlot
 #'
 #' Réalise un graphique différent selon les variables soumises
 #'
@@ -49,24 +49,31 @@
 #'   "gear" = "Nombre de vitesses",
 #'   "carb" = "Nombre de carburateurs")
 #'
-#' fct_cossDynamicPlot(tab = base, x_var = "mpg")
-#' fct_cossDynamicPlot(tab = base, x_var = "mpg", y_var = "am")
-#' fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb")
-#' fct_cossDynamicPlot(tab = base, x_var = "mpg", y_var = "drat", group_var = "am")
-#' fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "mpg", group_var = "gear")
-#' fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb", group_var = "vs")
-#' fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_x = "vs")
-#' fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_y = "vs")
-#' fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_x = "am", facet_y = "vs")
-#' fct_cossDynamicPlot(tab = base, x_var = "am", y_var = "carb",
-#'                     facet_x = "am", facet_y = "wt", n_categ = 3)
+#' fct_crossDynamicPlot(tab = base, x_var = "mpg")
+#' fct_crossDynamicPlot(tab = base, x_var = "mpg", y_var = "am")
+#' fct_crossDynamicPlot(tab = base, x_var = "am", y_var = "carb")
+#' fct_crossDynamicPlot(tab = base, x_var = "mpg", y_var = "drat", group_var = "am")
+#' fct_crossDynamicPlot(tab = base, x_var = "am", y_var = "mpg", group_var = "gear")
+#' fct_crossDynamicPlot(tab = base, x_var = "am", y_var = "carb", group_var = "vs")
+#' fct_crossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_x = "vs")
+#' fct_crossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_y = "vs")
+#' fct_crossDynamicPlot(tab = base, x_var = "am", y_var = "carb", facet_x = "am", facet_y = "vs")
+#' fct_crossDynamicPlot(tab = base, x_var = "am", y_var = "carb",
+#'                      facet_x = "am", facet_y = "wt", n_categ = 3)
 #'
 #'
-fct_cossDynamicPlot <- function(tab, x_var, y_var = NULL, group_var = NULL,
-                                facet_x = NULL, facet_y = NULL,
-                                includ_x0 = TRUE, includ_y0 = TRUE,
-                                n_categ = 6, show_NA = FALSE){
+fct_crossDynamicPlot <- function(tab, x_var, y_var = NULL, group_var = NULL,
+                                 facet_x = NULL, facet_y = NULL,
+                                 includ_x0 = TRUE, includ_y0 = TRUE,
+                                 n_categ = 6, show_NA = FALSE){
+  #check nb catégories ok
   if(!between(n_categ, 2, 6)) stop("Le nombre de cat\u00e9gories doit \u00eatre entre 2 et 6")
+  #check label ok
+  vec_lab_var_select = tab %>%
+    select(any_of(c(x_var, y_var, group_var, facet_x, facet_y))) %>%
+    lapply(var_label)
+  if(any(sapply(vec_lab_var_select, is.null))) stop("Toutes les variables s\u00e9lectionn\u00e9es doivent avoir un label")
+
   #Gestion des cas où "" est utilisé au lieu de NULL
   y_var = if(is.null(y_var) || y_var == "") NULL else y_var
   group_var = if(is.null(group_var) || group_var == "") NULL else group_var
@@ -103,7 +110,7 @@ fct_cossDynamicPlot <- function(tab, x_var, y_var = NULL, group_var = NULL,
       across(any_of(c(group_var, facet_x, facet_y)),
              function(x){
                if(utils_is.discrete(x)) return(x)
-               if(utils_is.continuous(x)) return(cut(x, n_categ))
+               if(utils_is.continuous(x)) return(cut(x, n_categ, include.lowest = TRUE))
                stop(paste0("Le type de la variable ", x, " n\'a pas \u00e9t\u00e9 reconnu"))
              })
     )

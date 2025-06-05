@@ -1,6 +1,8 @@
 globalVariables(unique(c(
+  #app_server
+  "tab_EPA_AVC",
   # fct_cossDynamicPlot:
   "label_value",
-  # mod_login_page_server : <anonymous>:
-  "mdp", "utilisateur", "tab_EPA_AVC"
+  # crossDynamicTable:
+  ".x", "Valeur", "Variable"
 )))

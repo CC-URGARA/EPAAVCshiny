@@ -9,6 +9,7 @@
 #' @importFrom shiny NS tagList
 #' @importFrom shinyWidgets pickerInput
 #' @importFrom shinyjqui jqui_resizable
+#' @importFrom DT DTOutput
 mod_pat_graph_cust_ui <- function(id) {
   ns <- NS(id)
   tagList(
@@ -46,7 +47,7 @@ mod_pat_graph_cust_ui <- function(id) {
                                    value = FALSE),
                      checkboxInput(ns("includ_y0"), label = "Inclure le z\u00e9ro sur l\'axe des ordonn\u00e9es ?",
                                    value = FALSE),
-                     checkboxInput(ns("showNA"), label = "Afficher les donn\u00e9es manquantes ?",
+                     checkboxInput(ns("show_NA"), label = "Afficher les donn\u00e9es manquantes ?",
                                    value = FALSE)
               )
             ),
@@ -58,7 +59,7 @@ mod_pat_graph_cust_ui <- function(id) {
         ),
         box(id = ns("boxCrossTableOutput"), title = "Tableau",
             width = 12, collapsible = TRUE,
-            tableOutput(ns("crossTable")))
+            DTOutput(ns("crossTable")))
     )
   )
 }
@@ -69,6 +70,7 @@ mod_pat_graph_cust_ui <- function(id) {
 #' @importFrom labelled var_label
 #' @importFrom purrr keep
 #' @importFrom stats setNames
+#' @importFrom DT renderDT
 #' @noRd
 mod_pat_graph_cust_server <- function(id, r_global){
   moduleServer(id, function(input, output, session){
@@ -83,7 +85,8 @@ mod_pat_graph_cust_server <- function(id, r_global){
       facet_y = NULL,
       includ_x0 = NULL,
       includ_y0 = NULL,
-      n_categ = NULL
+      n_categ = NULL,
+      show_NA = NULL
     )
 
     #Serveurs
@@ -120,6 +123,7 @@ mod_pat_graph_cust_server <- function(id, r_global){
       r_local$includ_x0 <- input$includ_x0
       r_local$includ_y0 <- input$includ_y0
       r_local$n_categ <- input$n_categ
+      r_local$show_NA <- input$show_NA
     })
 
     #Outputs
@@ -127,17 +131,17 @@ mod_pat_graph_cust_server <- function(id, r_global){
       validate(
         need(r_local$x_var, message = 'Choisissez vos param\u00e8tres puis cliquez sur \"g\u00e9n\u00e9rer le graphique\"')
       )
-      fct_cossDynamicPlot(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
-                          group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
-                          includ_x0 = r_local$includ_x0, includ_y0 = r_local$includ_y0, n_categ = r_local$n_categ)
+      fct_crossDynamicPlot(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
+                           group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
+                           includ_x0 = r_local$includ_x0, includ_y0 = r_local$includ_y0, n_categ = r_local$n_categ,
+                           show_NA = r_local$show_NA)
     })
 
-    output$crossTable <- renderTable(expr = {
+    output$crossTable <- renderDT(expr = {
       req(r_local$x_var)
-      shinipsum::random_table(nrow = 5, ncol = 5)
-      # fct_cossDynamicTable(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
-      #                     group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
-      #                     includ_x0 = r_local$includ_x0, includ_y0 = r_local$includ_y0, n_categ = r_local$n_categ)
+      fct_crossDynamicTable(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
+                            group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
+                            n_categ = r_local$n_categ, show_NA = r_local$show_NA)
     })
 
 

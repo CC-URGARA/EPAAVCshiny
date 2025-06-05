@@ -12,6 +12,7 @@ Depends:
 Imports: 
     config,
     dplyr,
+    DT,
     ggplot2,
     ggpubr,
     golem,
@@ -23,14 +24,13 @@ Imports:
     rlang,
     RSQLite,
     scales,
-    shinipsum,
     shiny,
-    shinyauthr,
     shinydashboard,
     shinyjqui,
     shinymanager,
     shinyWidgets,
-    stats
+    stats,
+    tidyr
 Suggests: 
     spelling,
     testthat (>= 3.0.0)
