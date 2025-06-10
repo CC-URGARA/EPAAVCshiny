@@ -69,5 +69,42 @@ utils_get_scale_type <- function(var, axis){
 }
 
 
+#' Add company logo to a plot
+#'
+#' @description Adds Urg'Ara logo to a plot.
+#'
+#' @param plot A ggplot object
+#' @param height The height of the logo in proportion of the graph (default 0.1)
+#' @param width The width of the logo in proportion of the graph (default 0.2)
+#'
+#' @return a ggplot2 object
+plot_add_logo <- function(plot,
+                          height = 0.1, width = 0.2){
+  #type check
+  if(!is.numeric(height) | !is.numeric(width)){
+    stop("Height and width must be numerical")} else
+      if(!dplyr::between(height, 0, 1) | !dplyr::between(width, 0, 1)){
+        stop("Height and width must be between 0 and 1")
+      }
+  if(!ggplot2::is_ggplot(plot)) stop("plot must be a ggplot object")
 
+  #removing margins of input plot
+  plot = plot +
+        ggplot2::theme(plot.margin = ggplot2::margin(b = 0))
+  #loading of the logo
+  logo = system.file("app/www/img/Logo_UrgAra_Long.png", package = "EPAAVCshiny")
+  logo_img = magick::image_read(logo)
+
+  #resolution of position
+  xy_logo = c(1-width, height/2)
+  #y coordinate of the plot (0 if logo at the top, 0+heigth if logo at the bottom)
+  y_plot = 0 + height
+
+  #adding logo image to the plot at designated coordinates
+  plot_logoed = cowplot::ggdraw() +
+    cowplot::draw_plot(plot, x = 0, y = y_plot, width = 1, height = 1-height) +
+    cowplot::draw_image(logo_img, x = xy_logo[1], y = xy_logo[2], width = width, height = height, vjust = 0.5)
+
+  return(plot_logoed)
+}
 

@@ -22,15 +22,24 @@ Idées :
  => Sélectionner les variables avec un label pour le graph/table croisé dynamique
 
 
-Remarques :
- - Par défaut la pop totale est sélectionnée mais quand on sélectionne une pop comment gérer les données manquantes. Ex : 0-120 ans = tout age mais si je veux ceux de > 60 je ne veux pas les NA
-
 Autoriser le choix de la taille des labels ?
 
 to do :
  - Age range => Automatique sur les données
  - r_global => Les moduls select pop communiquent entre eux
- - Bouton données manquantes
- - plot_add_logo
  - Couleurs UrgAra
+
+Information sur le nombre de cas sélectionné
+
+
+Gestion robuste des erreurs :
+
+
+output$plot <- renderPlot({
+  tryCatch({
+    plot(data[[input$variable]])
+  }, error = function(e) {
+    validate(need(FALSE, "Erreur lors de la génération du graphique."))
+  })
+})
 
