@@ -1,6 +1,7 @@
 # Thu Jul  4 14:42:04 2024 ------------------------------
 #DO NOT RUN
 stop("DO NOT RUN")
+keyring::key_set(service = "shinymanager", username = "EPAAVCshiny")
 #Initialisation de la base sqlite utilisée par shinymanager
 library(shinymanager)
 library(RSQLite)
