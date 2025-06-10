@@ -131,27 +131,33 @@ mod_pat_graph_cust_server <- function(id, r_global){
       validate(
         need(r_local$x_var, message = 'Choisissez vos param\u00e8tres puis cliquez sur \"g\u00e9n\u00e9rer le graphique\"')
       )
-      plot = fct_crossDynamicPlot(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
-                                  group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
-                                  includ_x0 = r_local$includ_x0, includ_y0 = r_local$includ_y0, n_categ = r_local$n_categ,
-                                  show_NA = r_local$show_NA)
-      plot_logoed = plot_add_logo(plot)#Ajout en dehors de la fonction car sinon les tests unitaires sur le rendu du plot dynamique sont plus compliqués
-      plot_logoed
+      tryCatch({
+        plot = fct_crossDynamicPlot(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
+                                    group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
+                                    includ_x0 = r_local$includ_x0, includ_y0 = r_local$includ_y0, n_categ = r_local$n_categ,
+                                    show_NA = r_local$show_NA)
+        plot_logoed = plot_add_logo(plot)#Ajout en dehors de la fonction car sinon les tests unitaires sur le rendu du plot dynamique sont plus compliqués
+        plot_logoed
+      }, error = function(e) {
+        validate(need(FALSE, "Une erreur s\'est produite lors de la g\u00e9n\u00e9ration du graphique. Merci de r\u00e9essayer ou de changer les param\u00e8tres"))
+      })
     })
 
     output$crossTable <- renderDT(expr = {
       req(r_local$x_var)
-      fct_crossDynamicTable(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
-                            group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
-                            n_categ = r_local$n_categ, show_NA = r_local$show_NA)
+      tryCatch({
+        fct_crossDynamicTable(tab = r_local$data, x_var = r_local$x_var, y_var = r_local$y_var,
+                              group_var = r_local$group_var, facet_x = r_local$facet_x, facet_y = r_local$facet_y,
+                              n_categ = r_local$n_categ, show_NA = r_local$show_NA)
+      }, error = function(e) {
+        validate(need(FALSE, "Une erreur s\'est produite lors de la g\u00e9n\u00e9ration du tableau. Merci de r\u00e9essayer ou de changer les param\u00e8tres"))
+      })
     })
-
-
   })
 }
 
-## To be copied in the UI
-# mod_pat_graph_cust_ui("pat_graph_cust_1")
+  ## To be copied in the UI
+  # mod_pat_graph_cust_ui("pat_graph_cust_1")
 
-## To be copied in the server
-# mod_pat_graph_cust_server("pat_graph_cust_1")
+  ## To be copied in the server
+  # mod_pat_graph_cust_server("pat_graph_cust_1")

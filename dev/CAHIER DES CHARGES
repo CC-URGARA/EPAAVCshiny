@@ -27,19 +27,6 @@ Autoriser le choix de la taille des labels ?
 to do :
  - Age range => Automatique sur les données
  - r_global => Les moduls select pop communiquent entre eux
- - Couleurs UrgAra
 
 Information sur le nombre de cas sélectionné
-
-
-Gestion robuste des erreurs :
-
-
-output$plot <- renderPlot({
-  tryCatch({
-    plot(data[[input$variable]])
-  }, error = function(e) {
-    validate(need(FALSE, "Erreur lors de la génération du graphique."))
-  })
-})
 

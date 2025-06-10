@@ -15,8 +15,8 @@
 #'
 #' @importFrom rlang sym
 #' @importFrom stats as.formula
-#' @importFrom ggplot2 aes labeller ggplot geom_histogram geom_bar geom_point geom_boxplot geom_count position_identity
-#' @importFrom ggplot2 scale_y_continuous scale_x_continuous scale_y_discrete scale_x_discrete position_dodge label_value
+#' @importFrom ggplot2 aes labeller ggplot geom_histogram geom_bar geom_point geom_boxplot geom_count
+#' @importFrom ggplot2 scale_y_continuous scale_x_continuous scale_y_discrete scale_x_discrete position_dodge label_value position_stack
 #' @importFrom ggplot2 scale_y_date scale_x_date scale_y_datetime scale_x_datetime scale_fill_discrete  scale_color_discrete facet_grid coord_cartesian
 #' @importFrom ggpubr theme_pubclean
 #' @importFrom labelled var_label "var_label<-"
@@ -156,7 +156,7 @@ fct_crossDynamicPlot <- function(tab, x_var, y_var = NULL, group_var = NULL,
   if(plot_type %in% c("geom_bar", "geom_histogram")){
     plot = plot +
       get(plot_type)(aes(x = !!x_var_sym, fill = !!group_var_sym),
-                     position = position_identity(), alpha = 0.75)
+                     position = position_stack(), alpha = 0.75)
   } else {
     plot = plot +
       get(plot_type)(aes(x = !!x_var_sym, y = !!y_var_sym, fill = !!group_var_sym, color = !!group_var_sym),
@@ -168,8 +168,8 @@ fct_crossDynamicPlot <- function(tab, x_var, y_var = NULL, group_var = NULL,
   plot = plot +
     get(scale_x)(scale_x_args) +
     get(scale_y)(scale_y_args) +
-    scale_fill_discrete(name = color_lab) +
-    scale_color_discrete(name = color_lab) +
+    scale_fill_discrete(name = color_lab, type = get_pal()) +
+    scale_color_discrete(name = color_lab, type = get_pal()) +
     facet_grid(facet_formula, labeller = custom_labeller) +
     coord_cartesian(xlim = xlim, ylim = ylim) +
     theme_pubclean(base_size = 16, base_family = "serif")

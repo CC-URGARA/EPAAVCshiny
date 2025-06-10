@@ -11,6 +11,7 @@ Depends:
     R (>= 3.5)
 Imports: 
     config,
+    cowplot,
     dplyr,
     DT,
     ggplot2,
@@ -19,6 +20,7 @@ Imports:
     keyring,
     labelled,
     lubridate,
+    magick,
     magrittr,
     purrr,
     rlang,

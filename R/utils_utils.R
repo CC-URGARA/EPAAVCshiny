@@ -108,3 +108,19 @@ plot_add_logo <- function(plot,
   return(plot_logoed)
 }
 
+
+#' get_pal
+#'
+#' Retourne les couleurs de la palette rUrgAra
+#'
+#' @returns Un vecteur de couleurs en HEX
+#'
+get_pal <- function(){
+  vec_col = c("#1c6fad","#e34041","#aecf38","#93CDDD","#eb9846","#FFFF33",
+              "#d084db","#F781BF","#b58f14","#548235","#843C0C","#893BC3",
+              "#00FFCC","#c24c96")
+  return(vec_col)
+}
+
+
+
