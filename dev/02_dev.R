@@ -36,6 +36,7 @@ golem::add_fct("crossDynamicPlot", with_test = TRUE)
 golem::add_fct("crossDynamicTable", with_test = TRUE)
 golem::add_fct("fct_AlluvialParcours", with_test = TRUE)
 golem::add_fct("selectPopPatient", with_test = TRUE)
+golem::add_fct("delaisPlot", with_test = TRUE)
 golem::add_fct("temp_load_data")
 golem::add_utils("utils", with_test = TRUE)
 

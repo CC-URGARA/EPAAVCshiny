@@ -16,20 +16,16 @@ Pages :
   - Panorama des UNV
 
 to do :
- - connecter les données etablissement
- - popup nombre de pat select
- - Selection des patients
- - Selection maj sur données de période, nom établissement et mode d'arrivée
+ - plot délais
+  * Supprimer les délais aberrants
+ - check toutes les variables labellisées
+  * Nettoyer
+  * Recalculer si necessaire
+  * relabeliser
+  * valider la pertinence de l'inclusion
  - Afficher les NA ne les affiches que s'il y en a
  - retirer les NA dans les plot fonctionne avec NA et Manquant => Traiter les NA pour être codés en "manquant" quand possible
+ - Nettoyage des valeurs extrèmes dans les délais (+ note info sur sympt-adm retiré pour les avc intrahosp)
+ - Permettre selon le profil de sélectionner "tous les établissements"" ou juste celui de l'utilisateur mais pas celui des autres (ATTENTION : sécuriser la chose cote serveur)
 
-
-
-Besoins à transmettre à Cécile :
- - Base uniforme sur les trois période
- - Identifieur de la période puisque la date d'adm n'est pas renseignée à 100% (var périod ex : printemp2024, automne2024 etc.)
- - Nom_etab propre (ex : CH ANNECY-GENEVOIS - SITE ANNECY et CHANGE-ANNECY sont présents (105 val uniques))
- - Finalement plutot un csv avec les var intermédiaires déjà calculées (délais)
- - Comment sont calculés les délais et lesquels calculer ?
- - Check comment son présentés les délais dans la dernière version des rapports
 
