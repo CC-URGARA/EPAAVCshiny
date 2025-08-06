@@ -93,10 +93,15 @@ mod_pat_graph_cust_server <- function(id, r_global){
     mod_selectPop_server("selectPop", r_global = r_global)
 
     #Update des input à l'aide des données lorsque les données sont crées
-    observeEvent(eventExpr = r_global$data, handlerExpr = {
-      listvar_labellized <- var_label(r_global$data)#extraction des labels
+    observeEvent(eventExpr = r_global$dataPatient, handlerExpr = {
+      listvar_labellized <- var_label(r_global$dataPatient)#extraction des labels
       listvar_labellized <- keep(listvar_labellized, function(x){
-        !is.null(x) && length(x) > 0 && x != ""#conservation des var avec un label
+        if(!is.null(x)){
+          if(!is.na(x)){
+            if(nchar(x > 0)) return(TRUE)
+          }
+        }
+        return(FALSE)
       })
       listvar_labellized = setNames(as.list(names(listvar_labellized)), unlist(listvar_labellized))#inversion nom valeur pour correspondre aux attente de pickerinput
 
@@ -114,7 +119,7 @@ mod_pat_graph_cust_server <- function(id, r_global){
 
     #Mise à jour du r_local sur bttn_generate
     observeEvent(eventExpr = input$bttn_generate, handlerExpr = {
-      r_local$data <- r_global$data
+      r_local$data <- r_global$dataPatientSelected
       r_local$x_var <- input$x_var
       r_local$y_var <- input$y_var
       r_local$group_var <- input$group_var
@@ -156,8 +161,8 @@ mod_pat_graph_cust_server <- function(id, r_global){
   })
 }
 
-  ## To be copied in the UI
-  # mod_pat_graph_cust_ui("pat_graph_cust_1")
+## To be copied in the UI
+# mod_pat_graph_cust_ui("pat_graph_cust_1")
 
-  ## To be copied in the server
-  # mod_pat_graph_cust_server("pat_graph_cust_1")
+## To be copied in the server
+# mod_pat_graph_cust_server("pat_graph_cust_1")

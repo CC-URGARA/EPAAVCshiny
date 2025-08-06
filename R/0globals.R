@@ -4,5 +4,7 @@ globalVariables(unique(c(
   # fct_cossDynamicPlot:
   "label_value",
   # crossDynamicTable:
-  ".x", "Valeur", "Variable"
+  ".x", "Valeur", "Variable",
+  # selectPopPatient:
+  "Age", "AVCType", "mode_arrivee", "NIHSS", "NOM_ETAB", "period", "Regule", "Sexe", "stratReperf", "TypeImagerie1"
 )))

@@ -26,7 +26,7 @@ app_ui <- function(request) {
           menuItem("Structures", icon = NULL, tabName  = "structures"),
           menuItem("Patients", icon = NULL, tabName  = "patients",
                    menuSubItem("D\u00e9lais", icon = NULL, tabName = "pat_delais"),
-                   menuSubItem("Parcours", icon = NULL, tabName = "pat_parcours"),
+                   # menuSubItem("Parcours", icon = NULL, tabName = "pat_parcours"),
                    menuSubItem("Graphique personnalis\u00e9", icon = NULL, tabName = "pat_graph_cust")
           )
         )),
@@ -38,8 +38,8 @@ app_ui <- function(request) {
                   mod_structures_ui("structures")),
           tabItem(tabName = "pat_delais",
                   mod_pat_delais_ui("pat_delais")),
-          tabItem(tabName = "pat_parcours",
-                  mod_pat_parcours_ui("pat_parcours")),
+          # tabItem(tabName = "pat_parcours",
+          #         mod_pat_parcours_ui("pat_parcours")),
           tabItem(tabName = "pat_graph_cust",
                   mod_pat_graph_cust_ui("pat_graph_cust"))
         ))

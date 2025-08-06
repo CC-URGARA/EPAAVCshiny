@@ -15,18 +15,21 @@ Pages :
   * Permet de sélectionner la population sur : Période, Exclure les AVC non isch, sexe, age, Mode d'arrivée, Régulation, NIHSS, Imagerie (IRM/TDM), Strat reperf
   - Panorama des UNV
 
-En cas d'erreur sur le plot/tableau croisé => Message disant "oups un problème s'est produit sur la création de votre graphique. Merci de réessayer ou de changer les paramètres"
-
-
-Idées :
- => Sélectionner les variables avec un label pour le graph/table croisé dynamique
-
-
-Autoriser le choix de la taille des labels ?
-
 to do :
- - Age range => Automatique sur les données
- - r_global => Les moduls select pop communiquent entre eux
+ - connecter les données etablissement
+ - popup nombre de pat select
+ - Selection des patients
+ - Selection maj sur données de période, nom établissement et mode d'arrivée
+ - Afficher les NA ne les affiches que s'il y en a
+ - retirer les NA dans les plot fonctionne avec NA et Manquant => Traiter les NA pour être codés en "manquant" quand possible
 
-Information sur le nombre de cas sélectionné
+
+
+Besoins à transmettre à Cécile :
+ - Base uniforme sur les trois période
+ - Identifieur de la période puisque la date d'adm n'est pas renseignée à 100% (var périod ex : printemp2024, automne2024 etc.)
+ - Nom_etab propre (ex : CH ANNECY-GENEVOIS - SITE ANNECY et CHANGE-ANNECY sont présents (105 val uniques))
+ - Finalement plutot un csv avec les var intermédiaires déjà calculées (délais)
+ - Comment sont calculés les délais et lesquels calculer ?
+ - Check comment son présentés les délais dans la dernière version des rapports
 

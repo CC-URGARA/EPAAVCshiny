@@ -18,14 +18,31 @@ app_server <- function(input, output, session) {
 
   # Your application server logic
   # Initialisation du r_global
-  r_global = reactiveValues()
-  r_global$data <- tab_EPA_AVC
+  r_global = reactiveValues(
+    periodSelect = NULL,
+    etabSelect = NULL,
+    includNonIsch = NULL,
+    ageSelect = NULL,
+    includAgeNA = NULL,
+    sexeSelect = NULL,
+    nihssSelect = NULL,
+    includNihssNA = NULL,
+    modeArriveSelect = NULL,
+    regulSelect = NULL,
+    imagerieSelect = NULL,
+    stratReperfSelect = NULL,
+    dataPatient = readRDS("Y:/EPA_AVC/datastep application shiny/data application/patients.rds")#données totales
+  )
+  observeEvent(eventExpr = r_global$dataPatient, once = TRUE, handlerExpr = {#val initiales
+    r_global$Nb_pat = nrow(r_global$dataPatient)
+    r_global$dataPatientSelected = r_global$dataPatient#Données sélectionnée dans les analyses
+  })
+
 
   #Appel serveurs
-  # mod_login_page_server("login_page", r_global = r_global)
   mod_accueil_server("accueil", r_global = r_global)
   mod_structures_server("structures", r_global = r_global)
   mod_pat_delais_server("pat_delais", r_global = r_global)
-  mod_pat_parcours_server("pat_parcours", r_global = r_global)
+  # mod_pat_parcours_server("pat_parcours", r_global = r_global)
   mod_pat_graph_cust_server("pat_graph_cust", r_global = r_global)
 }
